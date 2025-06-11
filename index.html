@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime Finder - AI-Powered Recommendations</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1 class="header__title">🎌 Anime Finder</h1>
+            <p class="header__subtitle">Discover similar anime using AI-powered recommendations</p>
+        </header>
+
+        <!-- Search Section -->
+        <section class="search-section">
+            <div class="search-container">
+                <div class="search-input-wrapper">
+                    <input 
+                        type="text" 
+                        id="searchInput" 
+                        class="form-control search-input" 
+                        placeholder="Enter anime name (e.g., Attack on Titan, Naruto, Death Note...)"
+                        autocomplete="off"
+                    >
+                    <button id="searchBtn" class="btn btn--primary search-btn">
+                        <span class="search-btn__text">Find Similar Anime</span>
+                        <span class="search-btn__loading hidden">
+                            <span class="loading-spinner"></span>
+                            Searching...
+                        </span>
+                    </button>
+                </div>
+                <div id="searchSuggestions" class="search-suggestions hidden"></div>
+            </div>
+        </section>
+
+        <!-- Results Section -->
+        <section class="results-section">
+            <div id="resultsContainer" class="results-container hidden">
+                <div class="results-header">
+                    <h2 id="resultsTitle" class="results-title"></h2>
+                    <div class="results-controls">
+                        <select id="sortSelect" class="form-control sort-select">
+                            <option value="similarity">Sort by Similarity</option>
+                            <option value="score">Sort by Score</option>
+                            <option value="popularity">Sort by Popularity</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="resultsGrid" class="results-grid"></div>
+            </div>
+
+            <!-- Loading State -->
+            <div id="loadingState" class="loading-state hidden">
+                <div class="loading-content">
+                    <div class="loading-spinner large"></div>
+                    <h3>Finding similar anime...</h3>
+                    <p>Analyzing genres, scores, and other features using AI</p>
+                </div>
+            </div>
+
+            <!-- Error State -->
+            <div id="errorState" class="error-state hidden">
+                <div class="error-content">
+                    <h3>Oops! Something went wrong</h3>
+                    <p id="errorMessage">Unable to find anime recommendations. Please try again.</p>
+                    <button id="retryBtn" class="btn btn--secondary">Try Again</button>
+                </div>
+            </div>
+
+            <!-- Empty State -->
+            <div id="emptyState" class="empty-state hidden">
+                <div class="empty-content">
+                    <h3>No anime found</h3>
+                    <p>Try searching for a different anime title or check your spelling.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Anime Detail Modal -->
+        <div id="animeModal" class="modal hidden">
+            <div class="modal-backdrop"></div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="modalTitle" class="modal-title"></h3>
+                    <button id="modalClose" class="modal-close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-anime-info">
+                        <img id="modalImage" class="modal-image" src="" alt="">
+                        <div class="modal-details">
+                            <div id="modalGenres" class="modal-genres"></div>
+                            <div class="modal-stats">
+                                <div class="stat">
+                                    <span class="stat-label">Score:</span>
+                                    <span id="modalScore" class="stat-value"></span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-label">Type:</span>
+                                    <span id="modalType" class="stat-value"></span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-label">Episodes:</span>
+                                    <span id="modalEpisodes" class="stat-value"></span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-label">Year:</span>
+                                    <span id="modalYear" class="stat-value"></span>
+                                </div>
+                            </div>
+                            <div class="modal-synopsis">
+                                <h4>Synopsis</h4>
+                                <p id="modalSynopsis"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
